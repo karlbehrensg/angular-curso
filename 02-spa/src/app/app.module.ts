@@ -11,6 +11,10 @@ import { AboutComponent } from './components/about/about.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { HomeComponent } from './components/home/home.component';
 
+// Servicios
+import { HeroesService } from './servicios/heroes.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +27,9 @@ import { HomeComponent } from './components/home/home.component';
     BrowserModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [
+    HeroesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
