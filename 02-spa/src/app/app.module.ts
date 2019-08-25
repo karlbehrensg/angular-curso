@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 
 // Servicios
 import { HeroesService } from './servicios/heroes.service';
+import { HeroeComponent } from './components/heroe/heroe.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HeroesService } from './servicios/heroes.service';
     NavbarComponent,
     AboutComponent,
     HeroesComponent,
-    HomeComponent
+    HomeComponent,
+    HeroeComponent
   ],
   imports: [
     BrowserModule,
