@@ -10,16 +10,13 @@ export class SpotifyService {
     console.log('Spotify service listo');
   }
 
-  getNewReleases(){
+  getNewReleases() {
 
     const headers = new HttpHeaders({
     Authorization: 'Bearer BQBqhnQP1c8r-_te5CxVmRZamfyovIJ_O880j3dSIROaNcrSHoggcWb8QdHzXsBAp9-eIHAeWEud0wPeeJU'
     });
 
-    this.http.get('https://api.spotify.com/v1/browse/new-releases', { headers })
-      .subscribe( data => {
-        console.log(data);
-      });
+    return this.http.get('https://api.spotify.com/v1/browse/new-releases', { headers } );
 
   }
 }
