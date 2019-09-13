@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class SpotifyService {
 
   constructor(private http: HttpClient) {
-    console.log('Spotify service listo');
+    console.log('Spotify Service Listo');
   }
 
   getQuery( query: string ) {
@@ -16,26 +17,40 @@ export class SpotifyService {
     const url = `https://api.spotify.com/v1/${ query }`;
 
     const headers = new HttpHeaders({
-      Authorization: 'Bearer BQAbSDbDrvhR5XYiJeiToSSwkEXlq724HLLR1U2JbM0oBdv7P6IexvO8krRwwQJcWqKq8AqI1jyIc7OuvHY'
+      'Authorization': 'Bearer BQDsnU8IhPdDKrUXuWq7FVMlrNmZrmMJiSyG6fRESINYgAJBBpnLiQ6GThLMuQsxqlLJVavErt4qQAgzvrA'
     });
 
     return this.http.get(url, { headers });
 
   }
 
+
   getNewReleases() {
 
-    return this.getQuery('browse/new-releases')
-      // tslint:disable-next-line: no-string-literal
-      .pipe( map( data => data['albums'].items ));
+    return this.getQuery('browse/new-releases?limit=20')
+              .pipe( map( data => data['albums'].items ));
 
   }
 
-  getArtista( termino: string ) {
+  getArtistas( termino: string ) {
 
     return this.getQuery(`search?q=${ termino }&type=artist&limit=15`)
-      // tslint:disable-next-line: no-string-literal
-      .pipe( map( data => data['artists'].items ));
+                .pipe( map( data => data['artists'].items));
 
   }
+
+  getArtista( id: string ) {
+
+    return this.getQuery(`artists/${ id }`);
+                // .pipe( map( data => data['artists'].items));
+
+  }
+
+  getTopTracks( id: string ) {
+
+    return this.getQuery(`artists/${ id }/top-tracks?country=us`)
+                .pipe( map( data => data['tracks']));
+
+  }
+
 }
